@@ -1,0 +1,8 @@
+# Ignore vscode config.
+/.vscode
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore bundler gems.
+vendor/bundle
