@@ -4,7 +4,9 @@ NHKよりRSS配信されたニュースをGmailアドレスに送信する。
 
 ## 設定
 config.rbファイルのADDRESS_BOOKにGmailアドレスを記述する。配列なので複数の宛先可。
-送信者のGmailアドレスとパスワードをID/PASSに記述する。PASSは二段階認証を設定し、アプリパスワードを生成すること。
+送信者のGmailアドレスとパスワードを環境変数に記述する。PASSは二段階認証を設定し、アプリパスワードを生成すること。  
+`GMAIL_ID="your mail address"`  
+`GMAIL_PASS="your password"`  
 
 ## 実行
 cronで定期実行する。  
