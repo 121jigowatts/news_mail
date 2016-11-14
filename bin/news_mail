@@ -1,6 +1,9 @@
-require './news'
-require './mailer'
-require './config'
+#! /usr/bin/env ruby
+$LOAD_PATH.unshift File.expand_path('../../lib',__FILE__)
+
+require 'news'
+require 'mailer'
+require 'config'
 
 # コンテンツ取得
 news = News.new
