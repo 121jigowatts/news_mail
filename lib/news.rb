@@ -1,6 +1,6 @@
 require 'rss'
 
-require './content'
+require 'content'
 
 class News
 
