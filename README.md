@@ -15,10 +15,10 @@ source {application path}/conf/application.env
 ```
 
 ## 実行
-実行権限を付与する。  
+### 実行権限を付与する。  
 `chmod +x bin/news_mail`
 
-cronで定期実行する。  
+### cronで定期実行する。  
 
 e.g. 毎日7,12,19時にメール配信する。  
 `crontab -e`  
