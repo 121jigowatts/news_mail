@@ -2,16 +2,18 @@
 $LOAD_PATH.unshift File.expand_path('../../lib',__FILE__)
 
 require 'news'
+require 'nhk_news'
 require 'mailer'
+require 'gmailer'
 require 'config'
 
 # コンテンツ取得
-news = News.new
-contents = news.get_contents
+news = News.new(NHKNews.new)
+contents = news.get_contents(Time.now)
 
 # メール送信
-mailer = Mailer.new(ID,PASS)
+mailer = Mailer.new(GMailer.new({id: ID, pass: PASS}))
 
 ADDRESS_BOOK.each do |address|
-  mailer.send(address,SUBJECT,contents)
+  mailer.send({send_to: address,subject: SUBJECT,contents: contents})
 end

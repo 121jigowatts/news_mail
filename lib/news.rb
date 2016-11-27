@@ -1,38 +1,26 @@
-require 'rss'
-
-require 'content'
-
 class News
+  attr_accessor :rss
+  def initialize(rss)
+    @rss = rss
+  end
 
-  def get_contents
-    @news = []
-
-    # NHK(RSS 2.0)
-    url = "http://www3.nhk.or.jp/rss/news/cat0.xml"
-    rss = RSS::Parser.parse(url)
-
-    rss.items.each do |item|
-        content = Content.new(
-            item.title,
-            item.link,
-            item.description
-            )
-        @news.push(content)
-    end
-
-    format
+  def get_contents(t)
+    format(rss.contents,t)
   end
 
   private  
-  def format
-    str = "<h1>#{DateTime.now.strftime("%Y-%m-%d %H:%M:%S")}</h1>"
-
-    @news.each do |content|
-      str << "<a href='#{content.link}'>#{content.title}</a>"
-      str << "<p>#{content.description}</p>"
-    end
+  def format(contents,t)
+    str = "<h1>#{time_format(t)}</h1>"
+    str << contents.join
 
     str
   end
 
+  def time_format(t)
+    t.strftime("%Y-%m-%d #{wday_jp(t.wday)}曜日 %H:%M")
+  end
+
+  def wday_jp(n)
+    %w(日 月 火 水 木 金 土)[n]
+  end
 end
