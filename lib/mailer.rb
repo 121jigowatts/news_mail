@@ -1,25 +1,10 @@
-require 'bundler/setup'
-require 'gmail'
-
 class Mailer
-
-  def initialize(id,pass)
-    @id = id
-    @pass = pass
+  attr_accessor :mail
+  def initialize(mail)
+    @mail = mail
   end
 
-  def send(send_to,subject,contents)
-    gmail = Gmail.connect(@id,@pass)
-    gmail.deliver do
-      to send_to
-      subject subject
-      html_part do
-        content_type 'text/html; charset=UTF-8'
-        body contents
-      end
-    end
-
-    gmail.logout
+  def send(args)
+    mail.send(args)
   end
-
 end
