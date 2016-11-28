@@ -6,9 +6,15 @@ require 'nhk_news'
 require 'mailer'
 require 'gmailer'
 require 'config'
+require 'logger'
 
 # コンテンツ取得
-news = News.new(NHKNews.new)
+APP_ROOT = File.expand_path('../../',__FILE__)
+log_path = File.join(APP_ROOT,'log',LOG_FILE)
+puts log_path
+
+logger = Logger.new(log_path)
+news = News.new(NHKNews.new,logger)
 contents = news.get_contents(Time.now)
 
 # メール送信
