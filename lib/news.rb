@@ -1,11 +1,19 @@
+require 'custom_error'
+
 class News
-  attr_accessor :rss
-  def initialize(rss)
+  attr_accessor :rss, :logger
+  def initialize(rss,logger)
     @rss = rss
+    @logger = logger
   end
 
   def get_contents(t)
-    format(rss.contents,t)
+    begin
+      format(rss.contents,t)
+    rescue RSSLoadError => e
+      logger.error("Load failed: #{e}")
+      raise
+    end
   end
 
   private  

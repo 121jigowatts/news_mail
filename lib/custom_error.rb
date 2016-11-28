@@ -1,0 +1,1 @@
+class RSSLoadError < StandardError; end

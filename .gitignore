@@ -1,5 +1,6 @@
 # env
 conf/application.env
+log/*
 
 # Ignore vscode config.
 /.vscode
